@@ -1,0 +1,11 @@
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\bin\Debug\BankDataAccess.dll.config
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\bin\Debug\BankDataAccess.dll
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\bin\Debug\BankDataAccess.pdb
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\obj\Debug\BankDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\obj\Debug\BankDataAccess.csproj.CopyComplete
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\obj\Debug\BankDataAccess.dll
+C:\Users\Gautham\source\repos\BankDBRestAPI\BankDataAccess\obj\Debug\BankDataAccess.pdb

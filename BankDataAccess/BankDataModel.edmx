@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BankAccountDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="bigint" Nullable="false" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SINNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerAddress">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="Address" Type="text" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="bigint" />
+        </EntityType>
+        <Association Name="FK__Account__Custome__398D8EEE">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerA__Custo__3D5E1FD2">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerAddress">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankAccountDBModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Account__Custome__398D8EEE" Association="Self.FK__Account__Custome__398D8EEE">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerA__Custo__3D5E1FD2" Association="Self.FK__CustomerA__Custo__3D5E1FD2">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerAddress" EntitySet="CustomerAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankAccountDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="Int64" Nullable="false" />
+          <Property Name="Balance" Type="Double" Nullable="false" />
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Account__Custome__398D8EEE" FromRole="Account" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SINNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Account__Custome__398D8EEE" FromRole="Customer" ToRole="Account" />
+          <NavigationProperty Name="CustomerAddresses" Relationship="Self.FK__CustomerA__Custo__3D5E1FD2" FromRole="Customer" ToRole="CustomerAddress" />
+        </EntityType>
+        <EntityType Name="CustomerAddress">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddressID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int64" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__CustomerA__Custo__3D5E1FD2" FromRole="CustomerAddress" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK__Account__Custome__398D8EEE">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerA__Custo__3D5E1FD2">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerAddress">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankAccountDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="CustomerAddresses" EntityType="Self.CustomerAddress" />
+          <AssociationSet Name="FK__Account__Custome__398D8EEE" Association="Self.FK__Account__Custome__398D8EEE">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerA__Custo__3D5E1FD2" Association="Self.FK__CustomerA__Custo__3D5E1FD2">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="CustomerAddress" EntitySet="CustomerAddresses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankAccountDBModelStoreContainer" CdmEntityContainer="BankAccountDBEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="BankAccountDBModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="BankAccountDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SINNumber" ColumnName="SINNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerAddresses">
+            <EntityTypeMapping TypeName="BankAccountDBModel.CustomerAddress">
+              <MappingFragment StoreEntitySet="CustomerAddress">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankAccountDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="bigint" Nullable="false" />
+    <Property Name="Balance" Type="float" Nullable="false" />
+    <Property Name="CustomerID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SINNumber" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerAddress">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="Address" Type="text" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AddressID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="bigint" />
+  </EntityType>
+  <Association Name="FK__Account__Custome__398D8EEE">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerA__Custo__3D5E1FD2">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerAddress">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankAccountDBModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Account__Custome__398D8EEE" Association="Self.FK__Account__Custome__398D8EEE">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerA__Custo__3D5E1FD2" Association="Self.FK__CustomerA__Custo__3D5E1FD2">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerAddress" EntitySet="CustomerAddress" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

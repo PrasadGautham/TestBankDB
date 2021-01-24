@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankDBRestAPI", "BankDBRestAPI\BankDBRestAPI.csproj", "{D5F763CA-B886-4D12-9F53-3E8B6EC7286F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankDataAccess", "BankDataAccess\BankDataAccess.csproj", "{A23A4FB2-7B7E-4CCB-B7D6-674B9003373E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5F763CA-B886-4D12-9F53-3E8B6EC7286F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F763CA-B886-4D12-9F53-3E8B6EC7286F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F763CA-B886-4D12-9F53-3E8B6EC7286F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F763CA-B886-4D12-9F53-3E8B6EC7286F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A23A4FB2-7B7E-4CCB-B7D6-674B9003373E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A23A4FB2-7B7E-4CCB-B7D6-674B9003373E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A23A4FB2-7B7E-4CCB-B7D6-674B9003373E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A23A4FB2-7B7E-4CCB-B7D6-674B9003373E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A574F7C3-3F9E-433F-91CE-65154441FBB3}
+	EndGlobalSection
+EndGlobal
